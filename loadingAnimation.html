@@ -21,8 +21,14 @@
       const loader = document.getElementById("loader");
       const status = document.getElementById("status");
 
+      // --- ADDED FEATURE ---
+      // An array of arrays to choose from when loading.
+      // Can change every time the page is loaded through picking of a random element in the array.
+      let potentialOptions = [["⏳", "⌛", ".", "..", "..."], ["💐", "🌷", "🌹", "🌸" ,"🌺"], ["💡", "📓", "✍🏻", "👩🏻‍💻", "🌟"]];
+      
+      //const frames = ["⏳", "⌛", ".", "..", "..."];
       // Defining an array of frames for the loading animation.
-      const frames = ["⏳", "⌛", ".", "..", "..."];
+      const frames = potentialOptions[Math.floor(Math.random() * potentialOptions.length)];
       // Index to keep track of placement in array.
       let index = 0;
       // Amount of cycles animation has been run.
