@@ -6,38 +6,61 @@
 </head>
 <body style="font-family: monospace; text-align: center; padding-top: 100px; background-color: #f4f4f4;">
 
+  <!-- Loader is an element that displays the loading anim. -->
   <div id="loader" style="font-size: 2rem; margin-bottom: 20px;">Loading...</div>
+  <!-- Status is an element that displays the status message. -->
   <div id="status">Please wait</div>
 
+  <!-- Script begins here. -->
   <script>
+    //Beginning of the loading animation function
     function runLoadingAnimation() {
+      // "In JavaScript, use document.getElementById() to grab an HTML element and modify it..."
+      // Making constants for the loader and status elements, established above.
+      // Doing this will allow us to directly manipulate the DOM.
       const loader = document.getElementById("loader");
       const status = document.getElementById("status");
 
+      // Defining an array of frames for the loading animation.
       const frames = ["⏳", "⌛", ".", "..", "..."];
+      // Index to keep track of placement in array.
       let index = 0;
+      // Amount of cycles animation has been run.
       let cycleCount = 0;
+      // Max number of cycles.
       const maxCycles = 10;
 
-      const interval = setInterval(() => {
+      // Creating a constant named interval and setting it to the
+      // setInterval function. 
+      const interval = setInterval(() => { // Using arrow notation. No parameters, executes code after =>. Reminder to self, the => is just a replacement for the word function.
+        // Accessing the textContent property of the loader and setting it to the the current index value modulo the length of the frames array.
+        // For example, at the beginning of the program, the index is 0. Considering that the array length is 5, 0 % 5 = 0.
+        // This would mean that the first frame outputted would be the first element in the frames array, "⏳". 
         loader.textContent = frames[index % frames.length];
+        // Incrementing the index variable by 1.
         index++;
+        // If the index modulo the length of the frames array has strict equality to 0, increment cycleCount by 1.
+        // Considering that index updates to 1 before hitting this if statement, the first time this will return true
+        // will be when index is 5. This means that the animation has cycled through all the frames in the array. 
         if (index % frames.length === 0) {
           cycleCount++;
         }
+
+        // If the cycleCount is greater than or equal to the maxCycles, call clearInterval, which will stop the repeated execution of the function.
         if (cycleCount >= maxCycles) {
           clearInterval(interval);
+          // Changes the loader and status textContent properties, updating the DOM.
           loader.textContent = "✅";
           status.textContent = "Done!";
         }
-      }, 500);
+      }, 500); // The 500 stands for 500 milliseconds. The code will execute every 500 milliseconds.
     }
 
+    // Calls runLoadingAnimation.
     runLoadingAnimation();
   </script>
+  <!-- Script ends here. -->
 
 </body>
 </html>
-
-<!-- Test Comment -->
   
